@@ -43,9 +43,9 @@ while run:
         count += 1
         angle=False
     if keys[pygame.K_SPACE]:
-        if Rect1.y >= 530 and Rect1.y >529 or Rect1.y > 330 and Rect1.y < 336 and Rect1.x > 301 and Rect1.x < 549 \
-        or  Rect1.y > 430 and Rect1.y < 436 and Rect1.x > 601 and Rect1.x < 849  \
-        or  Rect1.y > 230 and Rect1.y < 236 and Rect1.x > 1 and Rect1.x < 249 :
+        if Rect1.y >= 530 and Rect1.y >529 or Rect1.y > 334 and Rect1.y < 336 and Rect1.x > 301 and Rect1.x < 549 \
+        or  Rect1.y > 434 and Rect1.y < 436 and Rect1.x > 601 and Rect1.x < 849  \
+        or  Rect1.y > 234 and Rect1.y < 236 and Rect1.x > 1 and Rect1.x < 249 :
             for i in range(15):
                 Rect1.y -= 10
     if not Rect1.colliderect(Rect2) and not Rect1.colliderect(Rect3) and not Rect1.colliderect(Rect4)  and not Rect1.colliderect(Rect5):
@@ -56,6 +56,12 @@ while run:
     win.blit(stup, Rect3)
     win.blit(stup, Rect4)
     win.blit(stup, Rect5)
+
+    # ввод текста на экран
+    font = pygame.font.Font(pygame.font.get_default_font(), 36)
+    text_surface = font.render('Coordinates: {}, {}'.format(Rect1.x, Rect1.y), True, (255, 255, 0))
+    win.blit(text_surface, dest=(30, 30))
+
     pygame.display.update()
     clock.tick(12)
 pygame.quit()
