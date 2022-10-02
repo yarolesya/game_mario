@@ -1,4 +1,5 @@
 import pygame
+
 pygame.init()
 win = pygame.display.set_mode((1550, 800))
 nebo = pygame.image.load('./figs/небо1.jpeg')
@@ -7,7 +8,7 @@ stena = pygame.image.load('./figs/земля1.jpeg')
 stena = pygame.transform.scale(stena, (1550, 200))
 stup = pygame.image.load('./figs/земля1.jpeg')
 stup = pygame.transform.scale(stena, (200, 50))
-image_sprite = [pygame.image.load("./figs/мариостоит.png"),pygame.image.load("./figs/мраиоидет.png")]
+image_sprite = [pygame.image.load("./figs/мариостоит.png"), pygame.image.load("./figs/мраиоидет.png")]
 x = 580
 y = 530
 count = 0
@@ -17,7 +18,7 @@ Rect3 = pygame.Rect(50, 300, 200, 1)
 Rect4 = pygame.Rect(350, 400, 200, 1)
 Rect5 = pygame.Rect(650, 500, 200, 1)
 clock = pygame.time.Clock()
-angle=False
+angle = False
 run = True
 while run:
     for i in pygame.event.get():
@@ -37,18 +38,18 @@ while run:
     if keys[pygame.K_LEFT]:
         Rect1.x -= 12
         count += 1
-        angle=True
+        angle = True
     if keys[pygame.K_RIGHT]:
         Rect1.x += 12
         count += 1
-        angle=False
+        angle = False
     if keys[pygame.K_SPACE]:
-        if Rect1.y >= 530 and Rect1.y >529 or Rect1.y > 334 and Rect1.y < 336 and Rect1.x > 301 and Rect1.x < 549 \
-        or  Rect1.y > 434 and Rect1.y < 436 and Rect1.x > 601 and Rect1.x < 849  \
-        or  Rect1.y > 234 and Rect1.y < 236 and Rect1.x > 1 and Rect1.x < 249 :
-            for i in range(15):
-                Rect1.y -= 10
-    if not Rect1.colliderect(Rect2) and not Rect1.colliderect(Rect3) and not Rect1.colliderect(Rect4)  and not Rect1.colliderect(Rect5):
+        if Rect1.y >= 530 and Rect1.y > 529 or Rect1.y == 335 and Rect1.x > 301 and Rect1.x < 549 \
+                or Rect1.y == 435 and Rect1.x > 601 and Rect1.x < 849 \
+                or Rect1.y == 235 and Rect1.x > 1 and Rect1.x < 249:
+            Rect1.y -= 150
+    if not Rect1.colliderect(Rect2) and not Rect1.colliderect(Rect3) and not Rect1.colliderect(
+            Rect4) and not Rect1.colliderect(Rect5):
         Rect1.y = Rect1.y + 5
     win.blit(nebo, [0, 0])
     win.blit(stena, Rect2)
