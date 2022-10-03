@@ -1,4 +1,5 @@
 import pygame
+
 proigx = 0
 proigy = 0
 pygame.init()
