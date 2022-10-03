@@ -1,5 +1,6 @@
 import pygame
-
+proigx = 0
+proigy = 0
 pygame.init()
 win = pygame.display.set_mode((1550, 800))
 nebo = pygame.image.load('./figs/небо1.jpeg')
@@ -11,10 +12,13 @@ stup = pygame.transform.scale(stena, (200, 50))
 moneta = pygame.image.load('./figs/монета.png')
 moneta = pygame.transform.scale(moneta, (25, 25))
 image_sprite = [pygame.image.load("./figs/мариостоит.png"), pygame.image.load("./figs/мраиоидет.png")]
+proigrsh = pygame.image.load('./figs/проигрыш.jpg')
+proigrsh = pygame.transform.scale(proigrsh, (proigx, proigy))
 x = 580
 y = 530
 vreme = 120
 count = 0
+flag = False
 Rect1 = pygame.Rect(x, y, 50, 70)
 Rect_moneta = pygame.Rect(1000, 150, 25, 25)
 Rect2 = pygame.Rect(0, 600, 1550, 100)
@@ -57,6 +61,18 @@ while run:
     if not Rect1.colliderect(Rect2) and not Rect1.colliderect(Rect3) and not Rect1.colliderect(
             Rect4) and not Rect1.colliderect(Rect5) and not Rect1.colliderect(Rect6):
         Rect1.y = Rect1.y + 5
+
+
+
+    if pygame.Rect.colliderect(Rect1, Rect_moneta):
+        flag = True
+
+    if  vreme < 0 and flag  == False:
+        proigx = 1550
+        proigy = 800
+        proigrsh = pygame.transform.scale(proigrsh, (proigx, proigy))
+
+
     win.blit(nebo, [0, 0])
     win.blit(stena, Rect2)
     win.blit(povorot, Rect1)
@@ -65,11 +81,15 @@ while run:
     win.blit(stup, Rect5)
     win.blit(stup, Rect6)
     win.blit(moneta, Rect_moneta)
+    win.blit(proigrsh,[0,0])
     vreme -= 1
     # ввод текста на экран
     font = pygame.font.Font(pygame.font.get_default_font(), 36)
     text_surface = font.render('remaining time, {}'.format(vreme), True, (255, 255, 0))
     win.blit(text_surface, dest=(475, 0))
+
+
+    win.blit(proigrsh, [0, 0])
 
 
 
