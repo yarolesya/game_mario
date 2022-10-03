@@ -8,11 +8,15 @@ stena = pygame.image.load('./figs/земля1.jpeg')
 stena = pygame.transform.scale(stena, (1550, 200))
 stup = pygame.image.load('./figs/земля1.jpeg')
 stup = pygame.transform.scale(stena, (200, 50))
+moneta = pygame.image.load('./figs/монета.png')
+moneta = pygame.transform.scale(moneta, (25, 25))
 image_sprite = [pygame.image.load("./figs/мариостоит.png"), pygame.image.load("./figs/мраиоидет.png")]
 x = 580
 y = 530
+vreme = 120
 count = 0
 Rect1 = pygame.Rect(x, y, 50, 70)
+Rect_moneta = pygame.Rect(1000, 150, 25, 25)
 Rect2 = pygame.Rect(0, 600, 1550, 100)
 Rect3 = pygame.Rect(50, 300, 200, 1)
 Rect4 = pygame.Rect(350, 400, 200, 1)
@@ -60,11 +64,14 @@ while run:
     win.blit(stup, Rect4)
     win.blit(stup, Rect5)
     win.blit(stup, Rect6)
-
+    win.blit(moneta, Rect_moneta)
+    vreme -= 1
     # ввод текста на экран
     font = pygame.font.Font(pygame.font.get_default_font(), 36)
-    text_surface = font.render('Coordinates: {}, {}'.format(Rect1.x, Rect1.y), True, (255, 255, 0))
+    text_surface = font.render('remaining time, {}'.format(vreme), True, (255, 255, 0))
     win.blit(text_surface, dest=(475, 0))
+
+
 
     pygame.display.update()
     clock.tick(12)
