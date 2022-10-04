@@ -16,10 +16,13 @@ moneta = pygame.transform.scale(moneta, (moneta_x, moneta_y))
 image_sprite = [pygame.image.load("./figs/мариостоит.png"), pygame.image.load("./figs/мраиоидет.png")]
 proigrsh = pygame.image.load('./figs/проигрыш.jpg')
 proigrsh = pygame.transform.scale(proigrsh, (proigx, proigy))
+vigrsh = pygame.image.load('./figs/выигрыш.jpg')
+vigrsh = pygame.transform.scale(vigrsh, (1550, 800))
 x = 580
 y = 530
 vreme = 0
 count = 0
+vremya_win = 0
 flag = False
 Rect1 = pygame.Rect(x, y, 50, 70)
 Rect_moneta = pygame.Rect(1000, 150, 25, 25)
@@ -73,6 +76,10 @@ while run:
         moneta_y = 0
     moneta = pygame.transform.scale(moneta, (moneta_x, moneta_y))
 
+    vreme_vigrsh = 255- vremya_win*2 +220
+    if vreme_vigrsh >255:
+        vreme_vigrsh = 255
+
     win.blit(nebo, [0, 0])
     win.blit(stena, Rect2)
     win.blit(povorot, Rect1)
@@ -81,17 +88,19 @@ while run:
     win.blit(stup, Rect5)
     win.blit(stup, Rect6)
     win.blit(moneta, Rect_moneta)
-    if vreme > 300 and flag == False:
+    if vreme > 255 and flag == False:
         win.blit(proigrsh, [0, 0])
     elif  flag == True:
-        font = pygame.font.Font(pygame.font.get_default_font(), 36)
-        text_surface = font.render('you score: {}'.format(vremya_win), True, (25, 255, 0))
-        win.blit(text_surface, dest=(450, 0))
+        win.blit(vigrsh, [0, 0])
+        font = pygame.font.Font(pygame.font.get_default_font(), 80)
+        text_surface = font.render('you score: {}'.format(vremya_win), True, (vreme_vigrsh, 0, 0))
+        win.blit(text_surface, dest=(500, 20))
+
     else:
         # ввод текста на экран
-        font = pygame.font.Font(pygame.font.get_default_font(), 36)
+        font = pygame.font.Font(pygame.font.get_default_font(), 40)
         text_surface = font.render('remaining time, {}'.format(vreme), True, (25, 255, 0))
-        win.blit(text_surface, dest=(475, 0))
+        win.blit(text_surface, dest=(475, 10))
 
 
     vreme += 1
